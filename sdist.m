@@ -16,8 +16,6 @@ stable= readtable(sfile);
 sarr = table2array(stable(1,2:301));
 len = length(sarr);
 
-[population_mean, population_variance] = var(sarr);
-
 means = zeros(1, 30);
 standard_deviations = zeros(1, 30);
 variances = zeros(1, 30);
@@ -67,9 +65,9 @@ while ssize < sizelim
     % Add lines for population mean and variance to histograms
     hold on;
     subplot(1,2,1);
-    line([population_mean population_mean], ylim, 'Color', 'r');
+    line([M M], ylim, 'Color', 'r');
     subplot(1,2,2);
-    line([population_variance population_variance], ylim, 'Color', 'r');
+    line([V V], ylim, 'Color', 'r');
     hold off;
 
     %%
