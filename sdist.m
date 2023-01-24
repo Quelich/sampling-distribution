@@ -10,14 +10,19 @@ clc
 
 sizelim = 31;
 sfile = 'my_population.xlsx';
-
+% read raw population data from the excel file
 stable= readtable(sfile);
+% convert raw data into array
 sarr = table2array(stable(1,2:301));
-% smean = mean(sarr);
-[V,M] = var(sarr);
 len = length(sarr);
 
-rng('shuffle');
+[population_mean, population_variance] = var(sarr);
+
+means = zeros(1, 30);
+standard_deviations = zeros(1, 30);
+variances = zeros(1, 30);
+
+
 ssize = 1;
 while ssize < sizelim
     fprintf("Sample Size: %d\n", ssize)
@@ -25,22 +30,49 @@ while ssize < sizelim
     % randomly generate indices
     indices = randperm(len,ssize);
     % print randomly generated indices 
-    fprintf('random indices: [%s]\n', join(string(indices), ','));
+    %fprintf('random indices: [%s]\n', join(string(indices), ','));
     % randomly generate sampling distribution with sample size
     srandarr = zeros(1, length(indices));
-    %fprintf('idx: [%s]\n', join(string(srandarr), ','));
     % make a randomly generated array with random indices with ssize
     for i = 1:length(indices) 
         index = indices(i);
         srandarr(i) = sarr(index); 
     end
     fprintf('random array: [%s]\n', join(string(srandarr), ','));
-    % get mean and variance of the sampling distribution 
+    % get mean, standard deviation, and variance of the sampling distribution 
     [V,M] = var(srandarr);
     S = std(srandarr);
     fprintf("Mean: %f\n", M);
     fprintf("Standard Deviation: %f\n", S);
     fprintf("Variance: %f\n", V);
+    
+    means(1,ssize) = M;
+    standard_deviations(1, ssize) = S;
+    variances(1, ssize) = V;
+    
+    %% Create a Figure
+    figure;
+    subplot(1,2,1);
+    histogram(means);
+    title('Sampling Means');
+    xlabel('Mean');
+    ylabel('Sample Size ' + string(ssize));
+
+    subplot(1,2,2);
+    histogram(variances);
+    title('Sampling Variances');
+    xlabel('Variance');
+    ylabel('Sample Size ' + string(ssize));
+
+    % Add lines for population mean and variance to histograms
+    hold on;
+    subplot(1,2,1);
+    line([population_mean population_mean], ylim, 'Color', 'r');
+    subplot(1,2,2);
+    line([population_variance population_variance], ylim, 'Color', 'r');
+    hold off;
+
+    %%
     % continue iteration
     ssize = ssize + 1;
     fprintf("--------------------------------------------------\n");
