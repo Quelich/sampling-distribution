@@ -8,7 +8,7 @@ This repository implements sampling distribution for a randomly generated popula
     
     [0.89679,0.88237,0.54975,0.89816,0.58459,0.71266,0.92306,0.34197,0.08382,0.70527,0.60436,0.29195,0.089866,0.34068,0.897,0.50429,0.72351,0.714,0.32789,0.92236,1.0672,0.84712,0.88378,0.025899,0.3636,0.90647,1.0537,0.14452,0.29084,1.587]
     
-`Output` 
+`Output`
 
     Sample Size: 30
     Mean: 0.638814
@@ -18,5 +18,5 @@ This repository implements sampling distribution for a randomly generated popula
 
 <figure>
 <img src="https://raw.githubusercontent.com/Quelich/sampling-distribution/main/overview/s_30.png?token=GHSAT0AAAAAAB2PHZ6DPLWZWYS3ER2GVEGKY6REBXQ" width="480" height="360">
-  <figcaption>Histogram of Sample Size 30</figcaption>
+  <figcaption>Histogram of Sample Size 30. Green line (population data), Purple line (sample data)</figcaption>
 </figure>
