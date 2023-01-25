@@ -20,6 +20,7 @@ means = zeros(1, 30);
 standard_deviations = zeros(1, 30);
 variances = zeros(1, 30);
 
+[PV, PM] = var(sarr);
 
 ssize = 1;
 while ssize < sizelim
@@ -30,12 +31,7 @@ while ssize < sizelim
     % print randomly generated indices 
     %fprintf('random indices: [%s]\n', join(string(indices), ','));
     % randomly generate sampling distribution with sample size
-    srandarr = zeros(1, length(indices));
-    % make a randomly generated array with random indices with ssize
-    for i = 1:length(indices) 
-        index = indices(i);
-        srandarr(i) = sarr(index); 
-    end
+    srandarr = randsample(sarr, ssize);
     fprintf('random array: [%s]\n', join(string(srandarr), ','));
     % get mean, standard deviation, and variance of the sampling distribution 
     [V,M] = var(srandarr);
@@ -43,7 +39,7 @@ while ssize < sizelim
     fprintf("Mean: %f\n", M);
     fprintf("Standard Deviation: %f\n", S);
     fprintf("Variance: %f\n", V);
-    
+   
     means(1,ssize) = M;
     standard_deviations(1, ssize) = S;
     variances(1, ssize) = V;
@@ -65,9 +61,11 @@ while ssize < sizelim
     % Add lines for population mean and variance to histograms
     hold on;
     subplot(1,2,1);
-    line([M M], ylim, 'Color', 'r');
+    line([PM PM], ylim, 'Color', 'm');
+    line([M M], ylim, 'Color', 'g');
     subplot(1,2,2);
-    line([V V], ylim, 'Color', 'r');
+    line([PV PV], ylim, 'Color', 'm');
+    line([V V], ylim, 'Color', 'g');
     hold off;
 
     %%
@@ -75,7 +73,6 @@ while ssize < sizelim
     ssize = ssize + 1;
     fprintf("--------------------------------------------------\n");
 end
-
 
 
 
