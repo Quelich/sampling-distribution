@@ -17,6 +17,6 @@ This repository implements sampling distribution for a randomly generated popula
     
 
 <figure>
-<img src="https://raw.githubusercontent.com/Quelich/sampling-distribution/main/overview/s_30.png?token=GHSAT0AAAAAAB2PHZ6DPLWZWYS3ER2GVEGKY6REBXQ" width="480" height="360">
+<img src="https://github.com/Quelich/sampling-distribution/blob/main/overview/s_30.png" width="480" height="360">
   <figcaption>Histogram of Sample Size 30. Green line (population data), Purple line (sample data)</figcaption>
 </figure>
